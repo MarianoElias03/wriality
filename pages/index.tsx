@@ -18,39 +18,28 @@ export default function Home() {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossOrigin="anonymous"/>
       </Head>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossOrigin="anonymous"></Script>
-      <header className="p-3 mb-3 border-bottom">
-    <div className="container-fluid">
-      <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <link href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlinkHref="#bootstrap"/></svg>
-        </link>
+      <header className="p-3 mb-3 border-bottom container-fluid">
+        <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-        <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" className="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" className="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" className="nav-link px-2 link-dark">Customers</a></li>
-          <li><a href="#" className="nav-link px-2 link-dark">Products</a></li>
-        </ul>
-
-        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" className="form-control" placeholder="Search..." aria-label="Search"></input>
-        </form>
-
-        <div className="dropdown text-end">
+            <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="#" className="nav-link px-2 link-secondary">Overview</a></li>
+              <li><a href="#" className="nav-link px-2 link-dark">Inventory</a></li>
+              <li><a href="#" className="nav-link px-2 link-dark">Customers</a></li>
+              <li><a href="#" className="nav-link px-2 link-dark">Products</a></li>
+            </ul>
+            <div className="dropdown text-end">
           <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"/>
           </a>
-          <ul className="dropdown-menu text-small">
-            <li><a className="dropdown-item" href="#">New project...</a></li>
-            <li><a className="dropdown-item" href="#">Settings</a></li>
-            <li><a className="dropdown-item" href="#">Profile</a></li>
-            <li><br className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#">Sign out</a></li>
-          </ul>
+            <ul className="dropdown-menu text-small">
+              <li><a className="dropdown-item" href="#">New project...</a></li>
+              <li><a className="dropdown-item" href="#">Settings</a></li>
+              <li><a className="dropdown-item" href="#">Profile</a></li>
+              <li><a className="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
-  </header>
+      </header>
       <main className={styles.main}>
         <div className="container-fluid">
       <div className="p-4 p-md-5 mb-4 rounded text-bg-dark">
