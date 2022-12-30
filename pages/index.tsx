@@ -3,10 +3,49 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Script from "next/script"
+import { GraphQLClient, gql } from 'graphql-request'
+import BlogCard from "../components/BlogCard.js"
+
+const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
+
+const QUERY = gql`
+query Posts {
+  posts {
+    createdAt
+    datePublished
+    id
+    slug
+    title
+    updatedAt
+    content {
+      html
+    }
+    author {
+      name
+      avatar {
+        url
+      }
+    }
+    coverPhoto {
+      url
+    }
+  }
+}
+`;
+
+export async function getStaticProps(){
+  const { posts } = await graphcmds.request(QUERY);
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 10, 
+  };
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({posts}) {
   return (
     <>
       <Head>
@@ -41,6 +80,16 @@ export default function Home() {
         </div>
       </header>
       <main className={styles.main}>
+        {posts.map((post) => (
+          <BlogCard 
+          title={post.title} 
+          author={post.author} 
+          coverPhoto={post.coverPhoto} 
+          key={post.id} 
+          datePublished={post.datePublished} 
+          slug={post.slug} 
+          />
+        ))}
         <div className="container-fluid">
       <div className="p-4 p-md-5 mb-4 rounded text-bg-dark">
     <div className="col-md-6 px-0">
@@ -244,7 +293,7 @@ export default function Home() {
         </div>
       </div>
     </div>
-  </div>
+        </div>
       </main>
       <footer className="py-3 my-4 container-fluid">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
