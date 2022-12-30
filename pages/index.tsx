@@ -33,6 +33,30 @@ query Posts {
 }
 `;
 
+type Posts = Post[]
+
+type Post = {
+  createdAt: string;
+  datePublished: string;
+  id: string;
+  slug: string;
+  title: string;
+  updatedAt: string;
+  content: {
+    html: string;
+  }
+  author: {
+    name: string;
+    avatar: {
+      url: string;
+    }
+  }
+  coverPhoto: {
+    url: string;
+  }
+}
+
+
 export async function getStaticProps(){
   const { posts } = await graphcmds.request(QUERY);
   return {
@@ -45,7 +69,7 @@ export async function getStaticProps(){
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({posts}) {
+export default function Home({posts}: {posts: Posts}): JSX.Element {
   return (
     <>
       <Head>
