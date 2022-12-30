@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </ul>
             <div className="dropdown text-end">
           <a href="#" className="d-block link-dark text-decoration-none" aria-expanded="true">
-            <img src="./wriality.png" alt="mdo" width="50" height="50"/>
+            <img src="./wriality.png" alt="" width="50" height="50"/>
           </a>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   
   <Component {...pageProps} /> 
 
-  <footer className="py-3 my-4 container-xxl">
+  <footer className="py-3 my-4 container-xxl mb-0 pb-0">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
           <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>

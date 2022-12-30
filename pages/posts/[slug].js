@@ -62,17 +62,17 @@ export default function BlogPost({post}){
         <Head>
         <title>{post.title}</title>
         </Head>
-        <main className={styles.blog}>
-            <img src={post.coverPhoto.url} className={styles.cover} alt=''/>
-            <div className={styles.title}>
-                <img src={post.author.avatar.url} alt=''/>
-                <div className={styles.authtext}>
-                    <h6>By {post.author.name}</h6>
-                    <h6 className={styles.date}>{post.datePublished}</h6>
-                </div>
+        <main className={styles.main}>
+            <div className="container-md">
+                <img src={post.coverPhoto.url} className={styles.cover} alt=''/>
+                <img src={post.author.avatar.url} className={styles.avatar} alt=''/>
+                <h6 className={styles.name}>Written by {post.author.name} Published on: {post.datePublished}</h6>
+                <h6 className={styles.date}></h6>
+                <h1 className='text-capitalize fw-bold'>{post.title}</h1>
+                <p>
+                    <div class="lh-lg fs-5" dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+                </p>
             </div>
-            <h2>{post.title}</h2>
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
         </main>
     </>
     )
