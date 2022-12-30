@@ -4,7 +4,8 @@ import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Script from "next/script"
 import { GraphQLClient, gql } from 'graphql-request'
-import BlogCard from "../components/BlogCard.js"
+import { Categories, BlogCard, PostWidget } from '../components';
+import { getPosts} from '../services'
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -17,6 +18,7 @@ query Posts {
     slug
     title
     updatedAt
+    description
     content {
       html
     }
@@ -42,6 +44,7 @@ type Post = {
   slug: string;
   title: string;
   updatedAt: string;
+  description: string;
   content: {
     html: string;
   }
@@ -56,6 +59,23 @@ type Post = {
   }
 }
 
+export const getRecenPosts = async () => {
+  const query = gql`
+  query GetPostDetails() {
+    posts(
+      orderBy: createdAt_ASC
+      last: 3
+      ){
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug 
+      }
+  }
+  `
+}
 
 export async function getStaticProps(){
   const { posts } = await graphcmds.request(QUERY);
@@ -76,19 +96,27 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
         <title>Wriality</title>
       </Head>
       <main className={styles.main}>
-        <div className="container-fluid">
-        {posts.map((post) => (
+        <div className="container-xxl">
+          <div>
+            {posts.map((post) => (
           <BlogCard 
-          title={post.title} 
-          author={post.author} 
-          coverPhoto={post.coverPhoto} 
-          key={post.id} 
-          datePublished={post.datePublished} 
-          slug={post.slug} 
+            title={post.title} 
+            author={post.author} 
+            coverPhoto={post.coverPhoto} 
+            key={post.id} 
+            datePublished={post.datePublished} 
+            slug={post.slug}
+            description={post.description} 
           />
-        ))}          
+          ))}
+          </div>
+          <div>
+            <Categories />
+            <PostWidget />
+          </div>
+        
         </div>
       </main>
-</>
+    </>
   )
 }

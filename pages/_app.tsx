@@ -13,9 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossOrigin="anonymous"/>
   </Head>
-  <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossOrigin="anonymous"></Script>
+  <Script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossOrigin="anonymous"></Script>
+  <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossOrigin="anonymous"></Script>  
   <header>
-  <header className="p-3 mb-3 border-bottom container-fluid">
+  <header className="p-3 mb-3 border-bottom container-xxl">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
             <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -36,13 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
             </ul>
           </div>
         </div>
-      </header>
   </header>
-    
+</header>    
   
   <Component {...pageProps} /> 
 
-  <footer className="py-3 my-4 container-fluid">
+  <footer className="py-3 my-4 container-xxl">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
           <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>
