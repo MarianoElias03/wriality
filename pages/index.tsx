@@ -112,7 +112,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
           </div>
           <div>
             <Categories />
-            <PostWidget />
+            <PostWidget categories={["category-slug-1", "category-slug-2"]} slug="current-post-slug"/>
           </div>
         
         </div>

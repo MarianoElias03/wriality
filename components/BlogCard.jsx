@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from "../styles/BlogCard.module.css"
+import moment from 'moment'
 
 
 
@@ -23,7 +24,7 @@ export default function BlogPost({title, author, coverPhoto, datePublished, slug
                       <p className="card-text">{description}</p>
                       <div className="card-text" styles={styles.details}>
                         <div className={styles.date}>
-                        <p className='mb-0 pb-0'><small className="text-muted">{datePublished}</small></p>
+                        <p className='mb-0 pb-0'><small className="text-muted">{moment(datePublished).format('MMM DD, YYYY')}</small></p>
                     </div>
                   </div>
                 </div>
