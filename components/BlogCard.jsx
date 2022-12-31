@@ -3,11 +3,12 @@ import Link from 'next/link'
 import styles from "../styles/BlogCard.module.css"
 
 
+
 export default function BlogPost({title, author, coverPhoto, datePublished, slug, description}){
     return(
       <>
       <Link href={"/posts/" + slug}>
-        <div className="card mb-3">
+        <div className="card mb-3 mw-10vw">
           <div className='row g-0'>
             <div className="col-md-4">
                       <img src={coverPhoto.url} className={styles.coverPhoto} alt=''/>
@@ -18,7 +19,7 @@ export default function BlogPost({title, author, coverPhoto, datePublished, slug
                               <img src={author.avatar.url} alt="" className={styles.avatar}/>
                               <h6 className={styles.name}>Written by {author.name}</h6>
                           </div>
-                      <h2 className='card-title'>{title}</h2>
+                      <h2 className='card-title text-capitalize'>{title}</h2>
                       <p className="card-text">{description}</p>
                       <div className="card-text" styles={styles.details}>
                         <div className={styles.date}>

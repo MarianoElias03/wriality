@@ -1,6 +1,7 @@
 import styles from '../../styles/Slug.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
 import Head from 'next/head';
+import moment from "moment";
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -60,13 +61,13 @@ export default function BlogPost({post}){
     return (
     <>
         <Head>
-        <title>{post.title}</title>
+        <title className='text-capitalize'>{post.title}</title>
         </Head>
         <main className={styles.main}>
             <div className="container-md">
                 <img src={post.coverPhoto.url} className={styles.cover} alt=''/>
                 <img src={post.author.avatar.url} className={styles.avatar} alt=''/>
-                <h6 className={styles.name}>Written by {post.author.name} Published on: {post.datePublished}</h6>
+                <h6 className={styles.name}>Written by {post.author.name} Published on: {moment(post.createdAt).format('MMM DD, YYYY')}</h6>
                 <h6 className={styles.date}></h6>
                 <h1 className='text-capitalize fw-bold'>{post.title}</h1>
                 <p>
