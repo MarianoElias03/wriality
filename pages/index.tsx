@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import Script from "next/script"
 import { GraphQLClient, gql } from 'graphql-request'
-import { Categories, BlogCard, PostWidget } from '../components';
-import { getPosts} from '../services'
+import { BlogCard, Categories, PostWidget } from '../components';
+import { getPosts } from '../services';
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -111,10 +109,10 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
           ))}
           </div>
           <div>
+            <PostWidget categories={undefined} slug={undefined} />
             <Categories />
-            <PostWidget />
+            
           </div>
-        
         </div>
       </main>
     </>
