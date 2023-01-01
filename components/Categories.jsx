@@ -12,12 +12,16 @@ const Categories = () => {
 
   return (
     <div className='card mb-3'>
-      <h3 className=' card-body card-title'>
+      <h3 className=' card-body card-title mb-0 pb-2'>
         Categories
       </h3>
       {categories.map((category) => (
         <Link href={`/category/${category.slug}`} key={category.slug}>
-          
+          <div className='card-body'>
+          <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
+            {category.name}
+          </span>
+          </div>
         </Link>
       ))}
     </div>

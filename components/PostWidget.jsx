@@ -35,7 +35,7 @@ const PostWidget = ({ categories, slug }) => {
               <div className='text-capitalize'>
                 <h6 className="card-title">{post.title}</h6>
               </div> 
-              {moment(post.createdAt).format('MMM, DD YYYY')}
+              {moment(post.createdAt).format('MMM DD, YYYY')}
             </p>
             <br/>
             </Link> 

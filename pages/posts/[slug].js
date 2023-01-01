@@ -1,4 +1,4 @@
-import styles from '../../styles/Slug.module.css'
+import styles from '../../styles/SlugPost.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
 import Head from 'next/head';
 import moment from "moment";
