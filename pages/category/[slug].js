@@ -1,39 +1,80 @@
-import React from 'react';
-import { useRouter } from 'next/router';
+import styles from '../../styles/SlugPost.module.css'
+import { GraphQLClient, gql } from 'graphql-request'
+import Head from 'next/head';
+import moment from "moment";
 
-import { getCategories, getCategoryPost } from '../../services';
-import { PostCard, Categories } from '../../components';
+const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
-// Fetch data at build time
-export async function getStaticProps({ params }) {
-  const posts = await getCategoryPost(params.slug);
+const QUERY = gql`
+    query Post($slug: String!){
+        post(where: {slug: $slug}){
+            id,
+            title,
+            slug,
+            datePublished,
+            author{
+                id,
+                name,
+                avatar{
+                    url
+                }
+            }
+            content{
+                html
+            }
+            coverPhoto{
+                id,
+                url
+            }
+        }
+    }
+`;
 
-  return {
-    props: { posts },
-  };
+const SLUGLIST = gql`
+    {
+        posts{
+            slug
+        }
+    }
+`;
+
+export async function getStaticPaths(){
+    const { posts } = await graphcmds.request(SLUGLIST);
+    return{
+        paths: posts.map((post) => ({params: { slug: post.slug } })),
+        fallback: false,
+    };
 }
 
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
-export async function getStaticPaths() {
-  const categories = await getCategories();
-  return {
-    paths: categories.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+export async function getStaticProps({params}){
+    const slug = params.slug;
+    const data = await graphcmds.request(QUERY, {slug});
+    const post = data.post;
+    return {
+        props: {
+            post,
+        },
+        revalidate: 10, 
   };
 }
-
-const CategoryPost = ({ posts }) => {
-  const router = useRouter();
-  return (
-    <div className="container mx-auto px-10 mb-8">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
-            <Categories />
-        </div>
-      </div>
-    </div>
-  );
-};
-export default CategoryPost;
-
+export default function BlogPost({post}){
+    return (
+    <>
+        <Head>
+        <title className='text-capitalize'>{post.title}</title>
+        </Head>
+        <main className={styles.main}>
+            <div className="container-md">
+                <img src={post.coverPhoto.url} className={styles.cover} alt=''/>
+                <img src={post.author.avatar.url} className={styles.avatar} alt=''/>
+                <h6 className={styles.name}>Written by {post.author.name} Published on: {moment(post.createdAt).format('MMM DD, YYYY')}</h6>
+                <h6 className={styles.date}></h6>
+                <h1 className='text-capitalize fw-bold'>{post.title}</h1>
+                <p>
+                    <div class="lh-lg fs-5" dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+                </p>
+            </div>
+        </main>
+    </>
+    )
+}
