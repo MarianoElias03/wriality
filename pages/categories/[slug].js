@@ -58,7 +58,7 @@ export async function getStaticProps({params}){
         revalidate: 10, 
   };
 }
-export default function BlogPost({post}){
+export default function CategoriesPage({post}){
     return (
     <>
         <Head>
