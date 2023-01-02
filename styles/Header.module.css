@@ -1,0 +1,9 @@
+.button {
+  color: var(--bs-dark);
+  padding: 1rem;
+}
+.button:hover {
+  transition: all 0.5s;
+  color: var(--bs-secondary);
+  
+}/*# sourceMappingURL=Header.module.css.map */

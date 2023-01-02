@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import CategoriesPage from '../pages';
 
 import { getCategories } from '../services';
 
@@ -12,11 +13,13 @@ const Categories = () => {
 
   return (
     <div className='card mb-3'>
+      <Link href={`/CategoriesPage`} key={CategoriesPage}>
       <h3 className=' card-body card-title mb-0 pb-2'>
         Categories
       </h3>
+      </Link>
       {categories.map((category) => (
-        <Link href={`/category/${category.slug}`} key={category.slug}>
+        <Link href={`/categories/${category.slug}`} key={category.slug}>
           <div className='card-body'>
           <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
             {category.name}

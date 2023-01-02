@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { Header, Footer} from "../components"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,36 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
   </Head>
   <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossOrigin="anonymous"></Script>
   <header>
-  <header className="p-3 mb-3 border-bottom container-md">
-        <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-
-            <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="#" className="nav-link px-2 link-secondary">Overview</a></li>
-              <li><a href="#" className="nav-link px-2 link-dark">Inventory</a></li>
-              <li><a href="#" className="nav-link px-2 link-dark">Customers</a></li>
-              <li><a href="#" className="nav-link px-2 link-dark">Products</a></li>
-            </ul>
-            <div className="dropdown text-end">
-          <a href="#" className="d-block link-dark text-decoration-none" aria-expanded="true">
-            <img src="./wriality.png" alt="" width="50" height="50"/>
-          </a>
-          </div>
-        </div>
-      </header>
+    <Header />
   </header>
-    
-  
   <Component {...pageProps} /> 
-
   <footer className="py-3 my-4 container-xxl mb-0 pb-0">
-        <ul className="nav justify-content-center border-bottom pb-3 mb-3">
-          <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
-          <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>
-          <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Pricing</a></li>
-          <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">FAQs</a></li>
-          <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">About</a></li>
-        </ul>
-        <p className="text-center text-muted">&copy; 2022 Wriality, Inc</p>
+    <Footer />
   </footer>
   </>
   )

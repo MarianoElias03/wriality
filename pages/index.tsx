@@ -2,8 +2,9 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
-import { BlogCard, Categories, PostWidget } from '../components';
+import { BlogCard, Categories, PostWidget, Header } from '../components';
 import { getPosts } from '../services';
+
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -57,7 +58,7 @@ type Post = {
   }
 }
 
-export const getRecenPosts = async () => {
+export const getRecentPosts = async () => {
   const query = gql`
   query GetPostDetails() {
     posts(

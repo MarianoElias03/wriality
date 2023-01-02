@@ -1,0 +1,7 @@
+.button{
+    color: var(--bs-dark);
+    :hover{
+        transition: all 0.5s;
+        color: var(--bs-light);
+    }
+}
