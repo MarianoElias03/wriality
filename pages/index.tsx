@@ -95,7 +95,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
         <title>Wriality</title>
       </Head>
       <main className={styles.main}>
-        <div className="container-xxl">
+        <div className="container">
           <div>
             {posts.map((post) => (
           <BlogCard 
