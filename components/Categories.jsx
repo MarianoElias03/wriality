@@ -13,7 +13,7 @@ const Categories = () => {
 
   return (
     <div className='card mb-3'>
-      <Link href={`/CategoriesPage`} key={CategoriesPage}>
+      <Link href="/categories">
       <h3 className=' card-body card-title mb-0 pb-2'>
         Categories
       </h3>

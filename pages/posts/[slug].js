@@ -67,7 +67,7 @@ export default function BlogPost({post}){
             <div className="container-md">
                 <img src={post.coverPhoto.url} className={styles.cover} alt=''/>
                 <img src={post.author.avatar.url} className={styles.avatar} alt=''/>
-                <h6 className={styles.name}>Written by {post.author.name} Published on: {moment(post.createdAt).format('MMM DD, YYYY')}</h6>
+                <h6 className={styles.name}>Written by {post.author.name} Published on: {moment(post.datePublished).format('MMM DD, YYYY')}</h6>
                 <h6 className={styles.date}></h6>
                 <h1 className='text-capitalize fw-bold'>{post.title}</h1>
                 <p>
