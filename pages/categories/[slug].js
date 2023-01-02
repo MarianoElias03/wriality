@@ -65,7 +65,6 @@ export default function CategoriesPage({post}){
         <title className='text-capitalize'>{post.title}</title>
         </Head>
         <main className={styles.main}>
-             <Categories />
         </main>
     </>
     )
