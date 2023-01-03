@@ -111,7 +111,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
           </div>
           <div>
             <PostWidget categories={undefined} slug={undefined} />
-            <Categories />
+            <Categories slug={undefined} />
             
           </div>
         </div>

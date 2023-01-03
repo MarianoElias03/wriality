@@ -14,7 +14,7 @@ const CategoriesPage = () => {
         </Head>
         <main className={styles.body}>   
             <div className="container-sm">
-            <Categories  />
+            <Categories slug={undefined}  />
             </div>         
         </main>
         </>

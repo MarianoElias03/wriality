@@ -14,14 +14,16 @@ const Categories = ({ slug }) => {
 
   return (
     <>
+    <div className='container-md card mb-3 h-100vh'>
+      
     <Head>
       <title>Test</title>
     </Head>
-    <div className='container-md card mb-3 h-100vh'>
       <h3 className=' card-body card-title mb-0 pb-2'>
         Categories
       </h3>
-      {categories.map((category) => (
+          {categories.map((category) => (
+
           <div className='card-body'key={category.name}>
           <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
             {category.name}
