@@ -17,7 +17,7 @@ const Categories = ({ slug }) => {
       </h3>
       </Link>
       {categories.map((category) => (
-        <Link href={"/categories/" + category.slug} key={category.name}>
+        <Link href={`/categories/${category.slug}`} key={category.slug}>
           <div className='card-body'>
           <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
             {category.name}
