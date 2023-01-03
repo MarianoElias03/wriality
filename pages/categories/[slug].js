@@ -5,7 +5,47 @@ import Link from 'next/link'
 import { getCategories } from '../../services';
 import Head from 'next/head';
 
-const Categories = ({ slug }) => {
+const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
+
+const QUERY = gql`
+query Category($slug: String!){
+  category(where: {slug: $slug}){
+    name,
+    slug
+  }
+}
+`;
+
+
+const SLUGLIST = gql`
+    {
+        categories{
+            slug
+        }
+    }
+`;
+
+export async function getStaticPaths(){
+  const { categories } = await graphcmds.request(SLUGLIST);
+  return{
+      paths: categories.map((category) => ({params: { slug: category.slug } })),
+      fallback: false,
+  };
+}
+
+export async function getStaticProps({params}){
+  const slug = params.slug;
+  const data = await graphcmds.request(QUERY, {slug});
+  const category = data.category;
+  return {
+      props: {
+          category,
+      },
+      revalidate: 10, 
+};
+}
+
+const Categories = ({category}) => {
   const [categories, setCategories] = useState([]);
   
   useEffect(() => {
@@ -14,22 +54,17 @@ const Categories = ({ slug }) => {
 
   return (
     <>
-    <div className='container-md card mb-3 h-100vh'>
-      
-    <Head>
-      <title>Test</title>
+    <Head className="text-capitalize">
+      <title className='text-capitalize'>{category.name}</title>
     </Head>
-      <h3 className=' card-body card-title mb-0 pb-2'>
-        Categories
-      </h3>
-          {categories.map((category) => (
-
+    <div className='container-md vh-100'>
+    
+    <h1 className='text-capitalize'>
+      {category.name}
+    </h1>
           <div className='card-body'key={category.name}>
-          <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
-            {category.name}
-          </span>
+
           </div>
-      ))}
     </div>
     </>
   );
