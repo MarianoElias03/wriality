@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-
 import { getCategories } from '../services';
 
-const Categories = () => {
+const Categories = ({ slug }) => {
   const [categories, setCategories] = useState([]);
   
   useEffect(() => {
@@ -18,7 +17,7 @@ const Categories = () => {
       </h3>
       </Link>
       {categories.map((category) => (
-        <Link href={`/categories/${category.slug}`} key={category.slug}>
+        <Link href={"/categories/" + category.slug} key={category.name}>
           <div className='card-body'>
           <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
             {category.name}

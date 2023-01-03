@@ -1,70 +1,36 @@
 import styles from '../../styles/SlugPost.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+import { getCategories } from '../../services';
 import Head from 'next/head';
-import moment from "moment";
 
-const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
+const Categories = ({ slug }) => {
+  const [categories, setCategories] = useState([]);
+  
+  useEffect(() => {
+    getCategories().then((newCategories) => setCategories(newCategories))
+  }, []);
 
-const QUERY = gql`
-    query Post($slug: String!){
-        post(where: {slug: $slug}){
-            id,
-            title,
-            slug,
-            datePublished,
-            author{
-                id,
-                name,
-                avatar{
-                    url
-                }
-            }
-            content{
-                html
-            }
-            coverPhoto{
-                id,
-                url
-            }
-        }
-    }
-`;
-
-const SLUGLIST = gql`
-    {
-        posts{
-            slug
-        }
-    }
-`;
-
-export async function getStaticPaths(){
-    const { posts } = await graphcmds.request(SLUGLIST);
-    return{
-        paths: posts.map((post) => ({params: { slug: post.slug } })),
-        fallback: false,
-    };
-}
-
-export async function getStaticProps({params}){
-    const slug = params.slug;
-    const data = await graphcmds.request(QUERY, {slug});
-    const post = data.post;
-    return {
-        props: {
-            post,
-        },
-        revalidate: 10, 
-  };
-}
-export default function CategoriesPage({post}){
-    return (
+  return (
     <>
-        <Head>
-        <title className='text-capitalize'>{post.title}</title>
-        </Head>
-        <main className={styles.main}>
-        </main>
+    <Head>
+      <title>Test</title>
+    </Head>
+    <div className='container-md card mb-3 h-100vh'>
+      <h3 className=' card-body card-title mb-0 pb-2'>
+        Categories
+      </h3>
+      {categories.map((category) => (
+          <div className='card-body'key={category.name}>
+          <span className='cursor-pointer card-text text-capitalize border border-dark-subtle p-2 rounded fw-semibold'>
+            {category.name}
+          </span>
+          </div>
+      ))}
+    </div>
     </>
-    )
-}
+  );
+};
+
+export default Categories;
