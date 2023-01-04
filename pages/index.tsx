@@ -5,38 +5,10 @@ import { GraphQLClient, gql } from 'graphql-request'
 import { BlogCard, Categories, PostWidget, Header } from '../components';
 import { getPosts } from '../services';
 
-
-const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
-
-const QUERY = gql`
-query Posts {
-  posts {
-    createdAt
-    datePublished
-    id
-    slug
-    title
-    updatedAt
-    description
-    content {
-      html
-    }
-    author {
-      name
-      avatar {
-        url
-      }
-    }
-    coverPhoto {
-      url
-    }
-  }
-}
-`;
-
 type Posts = Post[]
 
 type Post = {
+  node: string,
   createdAt: string;
   datePublished: string;
   id: string;
@@ -77,10 +49,10 @@ export const getRecentPosts = async () => {
 }
 
 export async function getStaticProps(){
-  const { posts } = await graphcmds.request(QUERY);
+  const posts = (await getPosts()) || [];
   return {
     props: {
-      posts,
+      posts
     },
     revalidate: 10, 
   };
@@ -98,15 +70,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
         <div className="container">
           <div>
             {posts.map((post) => (
-          <BlogCard 
-            title={post.title} 
-            author={post.author} 
-            coverPhoto={post.coverPhoto} 
-            key={post.id} 
-            datePublished={post.datePublished} 
-            slug={post.slug}
-            description={post.description} 
-          />
+          <BlogCard post={post.node} key={post.title}/>
           ))}
           </div>
           <div>
