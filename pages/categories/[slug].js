@@ -2,8 +2,9 @@ import styles from '../../styles/SlugPost.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
-import { getCategories } from '../../services';
+import { getCategories, getCategoryPost } from '../../services';
 import Head from 'next/head';
+import { BlogCard } from "../../components"
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -16,19 +17,10 @@ query Category($slug: String!){
 }
 `;
 
-
-const SLUGLIST = gql`
-    {
-        categories{
-            slug
-        }
-    }
-`;
-
 export async function getStaticPaths(){
-  const { categories } = await graphcmds.request(SLUGLIST);
+  const categories = await getCategories();
   return{
-      paths: categories.map((category) => ({params: { slug: category.slug } })),
+      paths: categories.map(({ slug }) => ({params: { slug } })),
       fallback: false,
   };
 }
@@ -36,16 +28,18 @@ export async function getStaticPaths(){
 export async function getStaticProps({params}){
   const slug = params.slug;
   const data = await graphcmds.request(QUERY, {slug});
+  const posts = await getCategoryPost(params.slug);
   const category = data.category;
   return {
       props: {
           category,
+          posts
       },
       revalidate: 10, 
 };
 }
 
-const Categories = ({category}) => {
+const Categories = ({category, posts}) => {
   const [categories, setCategories] = useState([]);
   
   useEffect(() => {
@@ -63,7 +57,9 @@ const Categories = ({category}) => {
       {category.name}
     </h1>
           <div className='card-body'key={category.name}>
-
+            {posts.map((post, index) => (
+              <BlogCard key={index} post={post.node} />
+            ))}
           </div>
     </div>
     </>

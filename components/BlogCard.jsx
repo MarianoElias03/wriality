@@ -22,6 +22,7 @@ export default function BlogPost({ post }){
                               <h6 className={styles.name}>Written by {post.author.name}</h6>
                           </div>
                       <h2 className='card-title text-capitalize'>{post.title}</h2>
+                      <div className='badge text-bg-primary'>{post.categories.name} badge</div>
                       <p className="card-text">{post.description}</p>
                       <div className="card-text" styles={styles.details}>
                         <div className={styles.date}>

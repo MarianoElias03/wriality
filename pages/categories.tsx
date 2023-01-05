@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head';
 import styles from "../styles/CategoriesPage.module.css"
-import { Categories } from '../components';
+import { CategoriesWidgets } from '../components';
 
 import { getCategories } from '../services';
 
@@ -12,9 +12,12 @@ const CategoriesPage = () => {
         <Head>
             <title>Categories</title>
         </Head>
-        <main className={styles.body}>   
-            <div className="container-sm">
-            <Categories slug={undefined}  />
+        <main className={styles.body}>  
+            <div className="container">
+                <h1>Categories</h1>
+                <div>
+                    <CategoriesWidgets />
+                </div>
             </div>         
         </main>
         </>
