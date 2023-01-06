@@ -11,7 +11,6 @@ export const getPosts = async () => {
           node {
             categories {
               name
-              slug
             }
             author {
               name

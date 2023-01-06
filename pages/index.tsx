@@ -16,6 +16,9 @@ type Post = {
   title: string;
   updatedAt: string;
   description: string;
+  categories: {
+    name: string;
+  }
   content: {
     html: string;
   }
