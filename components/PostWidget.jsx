@@ -22,7 +22,7 @@ const PostWidget = ({ categories, slug }) => {
         Recent Posts
       </h3>
       {relatedPosts.map((post) => (
-        <div key={post.title}>
+        <div key={post.title} className={styles.cake}>
           <Link href={`/posts/${post.slug}`} key={post.title} className={styles.photo}>
             <img alt={post.title} height="60px" width='60px' src={post.coverPhoto.url} className={styles.cover}/>
             <p className={styles.title}>
