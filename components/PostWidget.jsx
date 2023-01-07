@@ -16,9 +16,8 @@ const PostWidget = ({ categories, slug }) => {
   }, [slug])
 
   console.log(relatedPosts)
-
   return (
-    <div className='card mb-3'>
+    <div className='card mb-3 pe-3'>
       <h3 className=' card-body card-title'>
         {slug ? 'Related Posts' : "Recent posts"}
       </h3>

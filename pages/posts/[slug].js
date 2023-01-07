@@ -12,6 +12,9 @@ const QUERY = gql`
             title,
             slug,
             datePublished,
+            categories {
+                name
+            }
             author{
                 id,
                 name,
@@ -70,6 +73,11 @@ export default function BlogPost({post}){
                 <h6 className={styles.name}>Written by {post.author.name} Published on: {moment(post.datePublished).format('MMM DD, YYYY')}</h6>
                 <h6 className={styles.date}></h6>
                 <h1 className='text-capitalize fw-bold'>{post.title}</h1>
+                <div className='badge text-bg-primary fs-6 fw-semibold'>
+                    {post.categories.map((category) => (
+                        <div key={category.name}>{category.name}</div>
+                    ))}
+                </div> 
                 <p>
                     <div class="lh-lg fs-5" dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
                 </p>

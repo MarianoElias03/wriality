@@ -23,8 +23,11 @@ export default function BlogPost({ post }){
                               <h6 className={styles.name}>Written by {post.author.name}</h6>
                           </div>
                       <h2 className='card-title text-capitalize'>{post.title}</h2>
-                      <div className='badge text-bg-primary'>{post.categories.name}</div>
-                      <p className="card-text">{post.description}</p>
+                      <div className='badge text-bg-primary fs-6 fw-semibold'>
+                        {post.categories.map((category) => (
+                          <div key={category.name}>{category.name}</div>
+                        ))}
+                      </div>                    <p className="card-text">{post.description}</p>
                       <div className="card-text" styles={styles.details}>
                         <div className={styles.date}>
                         <p className='mb-0 pb-0'><small className="text-muted">{moment(post.datePublished).format('MMM DD, YYYY')}</small></p>
