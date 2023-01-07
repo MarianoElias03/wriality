@@ -123,6 +123,7 @@ export const getCategoryPost = async (slug) => {
             createdAt
             slug
             title
+            description
             coverPhoto {
               url
             }

@@ -56,9 +56,9 @@ export default function Categories({category, posts}) {
         <h1 className='text-capitalize pb-3'>
           {category.name}
         </h1>
-              <div className='card-body'key={category.name}>
-                {posts.map((post, index) => (
-                  <BlogCard key={index} post={post.node} />
+              <div className='card-body'>
+                {posts.map((post) => (
+                  <BlogCard key={post.title} post={post.node} />
                 ))}
               </div>
       </div>

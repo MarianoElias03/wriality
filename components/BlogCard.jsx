@@ -27,7 +27,8 @@ export default function BlogPost({ post }){
                         {post.categories.map((category) => (
                           <div key={category.name}>{category.name}</div>
                         ))}
-                      </div>                    <p className="card-text">{post.description}</p>
+                      </div>                    
+                      <p className="card-text">{post.description}</p>
                       <div className="card-text" styles={styles.details}>
                         <div className={styles.date}>
                         <p className='mb-0 pb-0'><small className="text-muted">{moment(post.datePublished).format('MMM DD, YYYY')}</small></p>
