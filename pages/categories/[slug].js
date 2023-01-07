@@ -39,7 +39,7 @@ export async function getStaticProps({params}){
 };
 }
 
-const Categories = ({category, posts}) => {
+export default function Categories({category, posts}) {
   const [categories, setCategories] = useState([]);
   
   useEffect(() => {
@@ -51,19 +51,19 @@ const Categories = ({category, posts}) => {
     <Head className="text-capitalize">
       <title className='text-capitalize'>{category.name}</title>
     </Head>
-    <div className='container-md vh-100'>
-    
-    <h1 className='text-capitalize'>
-      {category.name}
-    </h1>
-          <div className='card-body'key={category.name}>
-            {posts.map((post, index) => (
-              <BlogCard key={index} post={post.node} />
-            ))}
-          </div>
-    </div>
+    <main className={styles.main}>
+      <div className='container-md'>
+        <h1 className='text-capitalize pb-3'>
+          {category.name}
+        </h1>
+              <div className='card-body'key={category.name}>
+                {posts.map((post, index) => (
+                  <BlogCard key={index} post={post.node} />
+                ))}
+              </div>
+      </div>
+    </main>
     </>
   );
 };
 
-export default Categories;

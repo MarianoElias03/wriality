@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <>
 
-    <div className="navbar container border-bottom border-dark-subtle mb-3">
+    <div className="navbar container border-bottom border-dark-subtle">
         <ul className="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 fw-semibold">
             <li><Link href="../" className={styles.button}>Home</Link></li>
             <li><Link href="../categories" className={styles.button} >Categories</Link></li>

@@ -70,7 +70,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
         <title>Wriality</title>
       </Head>
       <main className={styles.main}>
-        <div className='container-lg'>
+        <div className='container'>
           <div className={styles.flex}>
             <div className='p-4'>
               <Categories slug={undefined} />
