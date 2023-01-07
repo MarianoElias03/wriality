@@ -12,7 +12,7 @@ const Header = () => {
             <li><Link href="../categories" className={styles.button} >Categories</Link></li>
         </ul>
         <div className="text-end">
-            <a href="wriality.com" className="d-block link-dark text-decoration-none" aria-expanded="true">
+            <a href="./" className="d-block link-dark text-decoration-none" aria-expanded="true">
                 <img src="./wriality.png" alt="" width="50" height="50"/>
             </a>
         </div>

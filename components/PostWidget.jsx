@@ -19,17 +19,12 @@ const PostWidget = ({ categories, slug }) => {
   return (
     <div className='card mb-3 pe-3'>
       <h3 className=' card-body card-title'>
-        {slug ? 'Related Posts' : "Recent posts"}
+        Recent Posts
       </h3>
       {relatedPosts.map((post) => (
         <div key={post.title}>
           <Link href={`/posts/${post.slug}`} key={post.title} className={styles.photo}>
-            <img alt={post.title}
-            height="60px"
-            width='60px'
-            src={post.coverPhoto.url}
-            className={styles.cover}
-            />
+            <img alt={post.title} height="60px" width='60px' src={post.coverPhoto.url} className={styles.cover}/>
             <p className={styles.title}>
               <div className='text-capitalize'>
                 <h6 className="card-title">{post.title}</h6>
@@ -37,7 +32,7 @@ const PostWidget = ({ categories, slug }) => {
               {moment(post.createdAt).format('MMM DD, YYYY')}
             </p>
             <br/>
-            </Link> 
+          </Link> 
         </div>
         ))} 
          
