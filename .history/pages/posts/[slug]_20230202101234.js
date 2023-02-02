@@ -61,6 +61,7 @@ export async function getStaticProps({params}){
   };
 }
 export default function BlogPost({post}){
+    console.log(match.params.slug)
     
     return (
     <>
