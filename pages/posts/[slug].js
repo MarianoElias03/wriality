@@ -2,7 +2,6 @@ import styles from '../../styles/SlugPost.module.css'
 import { GraphQLClient, gql } from 'graphql-request'
 import Head from 'next/head';
 import moment from "moment";
-import { getPostDetails } from "../../services"
 
 const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
 
@@ -52,16 +51,16 @@ export async function getStaticPaths(){
 
 export async function getStaticProps({params}){
     const slug = params.slug;
-    const post = (await getPostDetails()) || [];
+    const data = await graphcmds.request(QUERY, { slug });
     return {
         props: {
-            post,
+            post: data.post
         },
         revalidate: 10, 
   };
 }
 export default function BlogPost({post}){
-    
+    console.log(post)
     return (
     <>
         <Head>
@@ -80,7 +79,7 @@ export default function BlogPost({post}){
                     ))}
                 </div> 
                 <p>
-                    <div class="lh-lg fs-5" dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
+                    <div className="lh-lg fs-5" dangerouslySetInnerHTML={{ __html: post.content.html }}></div>
                 </p>
             </div>
         </main>

@@ -1,14 +1,24 @@
- 
- .photo{
-    display: inline-flex;
-    border: solid 2px var(--bs-secondary);
-    border-radius: 5px;
-    min-width: 200px;
-    max-width: 10vw;
-    margin-left: 1rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    min-height: 100%;
+@media (max-width: 409px) {
+    .photo{
+        max-width: 10vw;
+    }
+}
+.photo{
+   display: inline-flex;
+   border: solid 2px var(--bs-secondary);
+   border-radius: 5px;
+
+   /*sizing*/
+   min-width: 200px;
+   max-height: 100%;
+
+   /*margin*/
+   margin-left: 1rem;
+   margin-top: 0;
+   margin-bottom: 1rem;
+
+   
+
 }
 
 .title {
@@ -22,7 +32,7 @@
 }
 
 .cover{
-    max-height: 63px;
+    
     margin: 0;
     border-radius: 3.5px 0 0 3.5px; 
     background-color: black;

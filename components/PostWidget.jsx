@@ -24,7 +24,7 @@ const PostWidget = ({ categories, slug }) => {
       {relatedPosts.map((post) => (
         <div key={post.title} className={styles.cake}>
           <Link href={`/posts/${post.slug}`} key={post.title} className={styles.photo}>
-            <img alt={post.title} height="60px" width='60px' src={post.coverPhoto.url} className={styles.cover}/>
+            <img alt={post.title} width='60px' src={post.coverPhoto.url} className={styles.cover}/>
             <p className={styles.title}>
               <div className='text-capitalize'>
                 <h6 className="card-title">{post.title}</h6>
