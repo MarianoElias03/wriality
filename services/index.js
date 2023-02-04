@@ -1,6 +1,8 @@
 import { request, gql } from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphcmds = new GraphQLClient("https://api-ap-southeast-2.hygraph.com/v2/clc9rtx4y225601t8acvshp51/master")
+
 
 export const getPosts = async () => {
   const query = gql`
@@ -52,39 +54,6 @@ export const getCategories = async () => {
   return result.categories;
 };
 
-export const getPostDetails = async () => {
-  const query = gql`
-  query Post($slug: String!){
-    post(where: {slug: $slug}){
-        id,
-        title,
-        slug,
-        datePublished,
-        categories {
-            name
-        }
-        author{
-            id,
-            name,
-            avatar{
-                url
-            }
-        }
-        content{
-            html
-        }
-        coverPhoto{
-            id,
-            url
-        }
-    }
-}
-  `;
-
-  const result = await request(graphqlAPI, query);
-
-  return result.postsConnection.edges;
-};
 
 export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
