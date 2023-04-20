@@ -25,6 +25,10 @@ const QUERY = gql`
             content{
                 html
             }
+            coverPhoto{
+                id,
+                url
+            }
         }
     }
 `;
