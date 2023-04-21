@@ -4,7 +4,7 @@ import axios from 'axios';
 export default async function handler(req, res) {
   try {
     // Replace APP_ID with your DigitalOcean App ID
-    const appId = process.env.Blog_Rebuild;
+    const appId = process.env.wriality;
     const apiToken = process.env.DIGITALOCEAN_API_TOKEN;
 
     const response = await axios.post(
