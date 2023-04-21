@@ -7,6 +7,7 @@ import React from 'react'
 
 
 export default function BlogPost({ post }){
+    console.log(post);
     return(
       <>
       <Link href={`/posts/${post.slug}`}>

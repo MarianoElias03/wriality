@@ -78,7 +78,7 @@ export default function Home({posts}: {posts: Posts}): JSX.Element {
             </div>
             <div className='p-4'>
               {posts.map((post) => (
-            <BlogCard post={post.node} key={post.title}/>
+            <BlogCard post={post} key={post.title}/>
             ))}
             </div>
           </div>

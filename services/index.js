@@ -6,36 +6,37 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection {
-        edges {
-          cursor
-          node {
-            categories {
-              name
-            }
-            author {
-              name
-              id
-              avatar {
-                url
-              }
-            }
-            createdAt
-            slug
-            title
-            description
-            coverPhoto {
-              url
-            }
+      posts(orderBy: datePublished_DESC, first: 3) {
+        id
+        title
+        slug
+        datePublished
+        categories {
+          name
+        }
+        author {
+          id
+          name
+          avatar {
+            url
           }
+        }
+        content {
+          html
+        }
+        description
+        coverPhoto {
+          id
+          url
         }
       }
     }
   `;
 
   const result = await request(graphqlAPI, query);
+  console.log(result)
 
-  return result.postsConnection.edges;
+  return result.posts;
 };
 
 export const getCategories = async () => {
