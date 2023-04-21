@@ -41,13 +41,14 @@ const SLUGLIST = gql`
     }
 `;
 
-export async function getStaticPaths(){
+export async function getStaticPaths() {
     const { posts } = await graphcmds.request(SLUGLIST);
-    return{
-        paths: posts.map((post) => ({params: { slug: post.slug } })),
-        fallback: false,
+    return {
+      paths: posts.map((post) => ({ params: { slug: post.slug } })),
+      fallback: 'blocking', // Change this value to 'blocking'
     };
-}
+  }
+  
 
 export async function getStaticProps({params}){
     const slug = params.slug;
@@ -56,7 +57,7 @@ export async function getStaticProps({params}){
         props: {
             post: data.post
         },
-        revalidate: 10, 
+        revalidate: 4,
   };
 }
 export default function BlogPost({post}){
