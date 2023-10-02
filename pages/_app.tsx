@@ -15,6 +15,16 @@ export default function App({ Component, pageProps }: AppProps) {
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossOrigin="anonymous"/>
   </Head>
+  <Script async src="https://www.googletagmanager.com/gtag/js?id=G-8TPYBRECMY"></Script>
+  <Script id='google-analytics-manager'>
+    {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8TPYBRECMY');
+    `}
+  </Script>
   <Script id='google-tag-manager' strategy='afterInteractive'>
       {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
